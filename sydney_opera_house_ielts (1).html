@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sydney Opera House — IELTS Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.9;
+  background: #ffffff;
+  color: #1a1a1a;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #2a5298;
+}
+.page-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+.page-subtitle {
+  font-size: 0.72rem;
+  color: #888;
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.page-hint {
+  font-size: 0.75rem;
+  color: #888;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  text-align: right;
+}
+
+/* COLUMN HEADERS */
+.col-headers {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  margin-bottom: 0;
+}
+.col-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
+  color: #666;
+  background: #f2f2f2;
+  padding: 7px 18px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+.col-divider-head {
+  background: #ccc;
+  border-top: 1px solid #ccc;
+}
+.col-label:first-child { border-right: none; }
+.col-label:last-child { border-left: none; }
+
+/* PASSAGE TABLE */
+.passage {
+  border: 1px solid #ccc;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+}
+
+/* PARAGRAPH ROW */
+.para-letter-row {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  background: #f7f9ff;
+  border-bottom: 1px solid #dde4f5;
+}
+.para-letter-cell {
+  padding: 10px 18px 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.para-letter {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2a5298;
+  line-height: 1;
+  font-family: 'EB Garamond', serif;
+  flex-shrink: 0;
+}
+.para-letter-divider {
+  background: #ccc;
+}
+
+/* PARAGRAPH TEXT ROW */
+.para-text-row {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  border-bottom: 1px solid #e8e8e8;
+}
+.para-text-row:last-child { border-bottom: none; }
+
+.cell {
+  padding: 14px 18px;
+  vertical-align: top;
+}
+.cell-en {
+  /* english column */
+}
+.cell-uz {
+  color: #3a3a3a;
+}
+.cell-divider {
+  background: #ccc;
+  width: 1px;
+  flex-shrink: 0;
+}
+
+/* SENTENCES inline */
+.sent {
+  display: inline;
+}
+.sent.highlight {
+  background: #fff176;
+  border-radius: 2px;
+}
+
+/* SENTENCE NUMBER superscript */
+.snum {
+  font-size: 10.5px;
+  color: #888;
+  vertical-align: super;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  margin-right: 1px;
+  user-select: none;
+  font-style: normal;
+}
+
+/* WORD CLICKABLE */
+.w {
+  cursor: pointer;
+  border-bottom: 1px dashed #888;
+  transition: color 0.12s;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.w:hover {
+  color: #2a5298;
+}
+
+/* ==================== POPUP ==================== */
+#popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  background: #fff;
+  border: 1px solid #b8860b;
+  border-radius: 7px;
+  width: 290px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#popup-close {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 2px 5px;
+  line-height: 1;
+  z-index: 2;
+}
+#popup-close:hover { color: #555; }
+
+#popup-word {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  padding: 12px 36px 8px 14px;
+  background: #fdfaf3;
+  border-bottom: 1px solid #f0e8d0;
+}
+
+#popup-body {
+  padding: 10px 14px 12px;
+}
+
+.popup-ipa-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.popup-ipa {
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+  font-family: Arial, sans-serif;
+}
+#btn-speak {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  background: #f9f9f9;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+#btn-speak:hover {
+  background: #2a5298;
+  color: #fff;
+  border-color: #2a5298;
+}
+
+.popup-pos {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.popup-meaning {
+  font-size: 13.5px;
+  color: #333;
+  margin-bottom: 5px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.popup-uzbek {
+  font-size: 13px;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  font-family: Arial, sans-serif;
+}
+
+.popup-example {
+  font-size: 12.5px;
+  font-style: italic;
+  color: #555;
+  border-top: 1px solid #eee;
+  padding-top: 6px;
+  margin-bottom: 8px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.popup-loading {
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+  padding: 8px 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.popup-dict-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.popup-dict-row a {
+  flex: 1;
+  text-align: center;
+  font-size: 11.5px;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  padding: 5px 4px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  color: #fff;
+  transition: opacity 0.15s;
+}
+.popup-dict-row a:hover { opacity: 0.85; }
+#btn-cambridge { background: #1a3a6b; }
+#btn-oxford { background: #003366; color: #e8d070; border-color: #003366; }
+
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="page-title">Sydney Opera House</div>
+      <div class="page-subtitle">IELTS Academic Reading</div>
+    </div>
+    <div class="page-hint">Click any English word to look it up</div>
+  </div>
+
+  <div class="col-headers">
+    <div class="col-label">English</div>
+    <div class="col-divider-head"></div>
+    <div class="col-label">O'zbekcha</div>
+  </div>
+
+  <div class="passage" id="passage"></div>
+
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay"></div>
+
+<!-- POPUP -->
+<div id="popup">
+  <button id="popup-close">✕</button>
+  <div id="popup-word"></div>
+  <div id="popup-body">
+    <div class="popup-loading" id="popup-loading">Yuklanmoqda…</div>
+    <div id="popup-content" style="display:none">
+      <div class="popup-ipa-row">
+        <span class="popup-ipa" id="popup-ipa"></span>
+        <button id="btn-speak">🔊</button>
+      </div>
+      <div class="popup-pos" id="popup-pos"></div>
+      <div class="popup-meaning" id="popup-meaning"></div>
+      <div class="popup-uzbek" id="popup-uzbek"></div>
+      <div class="popup-example" id="popup-example"></div>
+    </div>
+    <div class="popup-dict-row">
+      <a id="btn-cambridge" href="#" target="_blank" rel="noopener">Cambridge</a>
+      <a id="btn-oxford" href="#" target="_blank" rel="noopener">Oxford</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ======================================================
+// PASSAGE DATA — paragraphs A–F
+// Each paragraph: {letter, sentences:[{en, uz}]}
+// Words wrapped in <w>…</w> become clickable
+// ======================================================
+var PARAS = [
+  {
+    letter: 'A',
+    sentences: [
+      {
+        en: `Sydney Opera House is an example of late modern <w>architecture</w>; it is <w>admired</w> internationally and <w>treasured</w> by the people of Australia.`,
+        uz: `Sidney Opera uyi kech zamonaviy me'morchilikning namunasidir; u xalqaro miqyosda hayrat bilan qabul qilinadi va Avstraliya xalqi tomonidan qadrlanadi.`
+      },
+      {
+        en: `In 1956 the <w>Premier</w> of New South Wales, Australia, announced an international <w>competition</w> for the design of an opera house for Sydney.`,
+        uz: `1956-yilda Avstraliyaning Yangi Janubiy Uels shtati bosh vaziri Sidney uchun opera uyi loyihasiga xalqaro tanlov e'lon qildi.`
+      },
+      {
+        en: `It <w>attracted</w> more than 200 <w>entries</w> from around the world and was won by Jørn Utzon, a relatively little-known <w>architect</w> from Denmark.`,
+        uz: `U dunyo bo'ylab 200 dan ortiq ishtirokchini jalb qildi va Daniyadan nisbatan kam tanilgan me'mor Yørn Utzon tomonidan g'alaba qozonildi.`
+      }
+    ]
+  },
+  {
+    letter: 'B',
+    sentences: [
+      {
+        en: `The story goes that during the <w>judging</w> of the competition, one judge, American architect Eero Saarinen, arrived in Sydney after the other three judges had started <w>assessing</w> the entries.`,
+        uz: `Rivoyatga ko'ra, tanlov hakamlik paytida amerikalik me'mor Eero Saarinen qolgan uch hakam ishlarni baholashni boshlagandan keyin Sidneyga keldi.`
+      },
+      {
+        en: `He looked through their <w>rejected</w> entries and stopped at the Utzon design, <w>declaring</w> it to be <w>outstanding</w>.`,
+        uz: `U rad etilgan ishlarni ko'rib chiqdi va Utzon loyihasida to'xtab, uni ajoyib deb e'lon qildi.`
+      }
+    ]
+  },
+  {
+    letter: 'C',
+    sentences: [
+      {
+        en: `It was Utzon's life and <w>travels</w> that had shaped his design for the Sydney Opera House.`,
+        uz: `Utzonning hayoti va sayohatlari uning Sidney Opera uyi uchun loyihasini shakllantirdi.`
+      },
+      {
+        en: `Though he had never visited the site, he used his <w>maritime</w> background to study <w>naval</w> charts of Sydney Harbour.`,
+        uz: `Garchi u hech qachon ob'ektga bormagan bo'lsa-da, u o'zining dengizchilik tajribasidan foydalanib Sidney Harbourining dengiz xaritalarini o'rgandi.`
+      },
+      {
+        en: `His early <w>exposure</w> to <w>shipbuilding</w> provided the <w>inspiration</w> for the design of the roof of the Sydney Opera House, which is a series of <w>curved</w> 'shells' that look like the sails of a sailing ship <w>billowing</w> on the wind.`,
+        uz: `Kemasozlik bilan erta tanishishi Sidney Opera uyi tomining loyihasiga ilhom berdi — bu shamolda hilpiragan yelkanli kemaning yelkanlariga o'xshagan bir qator egri "qobiqlar"dan iborat.`
+      },
+      {
+        en: `From his travels to Mexico, he had the idea of placing his building on a wide <w>horizontal</w> <w>platform</w>.`,
+        uz: `Meksikaga sayohatlaridan u binosini keng gorizontal platforma ustiga qo'yish g'oyasini oldi.`
+      }
+    ]
+  },
+  {
+    letter: 'D',
+    sentences: [
+      {
+        en: `<w>Construction</w> of the platform began in 1959, and throughout the early 1960s Utzon <w>amended</w> his original designs in order to develop a way to build the large 'shells' that cover the two main halls.`,
+        uz: `Platforma qurilishi 1959-yilda boshlandi va 1960-yillarning boshida Utzon ikkita asosiy zalini qoplaydigan katta "qobiqlar"ni qurish usulini ishlab chiqish uchun dastlabki loyihalarini o'zgartirdi.`
+      },
+      {
+        en: `The <w>construction</w> of the roof brought together some of the world's best <w>engineers</w> with Utzon's <w>vision</w>.`,
+        uz: `Tom qurilishi dunyo bo'ylab eng yaxshi muhandislarni Utzonning qarashlari bilan birlashtirdi.`
+      },
+      {
+        en: `The design was one of the first examples of the use of computer-aided design for <w>complex</w> shapes.`,
+        uz: `Loyiha murakkab shakllar uchun kompyuter yordamida loyihalashdan foydalanishning dastlabki namunalaridan biri edi.`
+      },
+      {
+        en: `Although Utzon had <w>spectacular</w> plans for the <w>interior</w>, he was unable to <w>realize</w> them.`,
+        uz: `Garchi Utzonning ichki qismi uchun ajoyib rejalari bo'lgan bo'lsa-da, u ularni amalga oshira olmadi.`
+      },
+      {
+        en: `Cost <w>overruns</w> contributed to <w>criticism</w> of the project and, after a change of government, the Minister of Works began questioning Utzon's <w>schedules</w> and cost <w>estimates</w>.`,
+        uz: `Xarajatlarning oshib ketishi loyihaga tanqidning kuchayishiga olib keldi va hukumat o'zgarishidan so'ng Ishlar vaziri Utzonning jadval va xarajat hisob-kitoblarini so'roq qila boshladi.`
+      },
+      {
+        en: `Payments to Utzon were stopped and he was forced to <w>withdraw</w> as chief <w>architect</w> in 1966.`,
+        uz: `Utzonga to'lovlar to'xtatildi va u 1966-yilda bosh me'mor sifatida chetlashtirishga majbur bo'ldi.`
+      },
+      {
+        en: `Following his <w>resignation</w>, there were protests through the streets led by <w>prominent</w> architect Harry Seidler and others, demanding Utzon be <w>reinstated</w> as architect.`,
+        uz: `Uning iste'fosidan so'ng taniqli me'mor Garri Seyler va boshqalar boshchiligida Utzonni me'mor sifatida qayta tiklanishini talab qilgan ko'cha namoyishlari bo'ldi.`
+      },
+      {
+        en: `However, Utzon was not <w>reinstated</w> and left Australia in 1966.`,
+        uz: `Biroq Utzon qayta tiklanmadi va 1966-yilda Avstraliyani tark etdi.`
+      },
+      {
+        en: `He never returned and new <w>architects</w> were appointed to complete the building in his <w>absence</w>.`,
+        uz: `U hech qachon qaytmadi va binoni uning yo'qligida yakunlash uchun yangi me'morlar tayinlandi.`
+      }
+    ]
+  },
+  {
+    letter: 'E',
+    sentences: [
+      {
+        en: `The original cost <w>estimate</w> for the Opera House was $7 million, with the <w>completion</w> date set at 26 January 1963.`,
+        uz: `Opera uyi uchun dastlabki xarajat hisob-kitobi 7 million dollar bo'lib, tugatish sanasi 1963-yil 26-yanvar qilib belgilangan edi.`
+      },
+      {
+        en: `However, the Opera House was not <w>formally</w> completed until 1973, having cost $102 million.`,
+        uz: `Biroq Opera uyi 102 million dollarga tushib, 1973-yilgacha rasman yakunlanmadi.`
+      },
+      {
+        en: `Since its opening in 1973, Sydney Opera House has earned a <w>reputation</w> as a world-class performing arts <w>centre</w>, and become a <w>symbol</w> of both Sydney and Australia.`,
+        uz: `1973-yilda ochilganidan beri Sidney Opera uyi jahon darajasidagi ijro san'ati markazi sifatida obro' qozondi va Sidney hamda Avstraliyaning ramziga aylandi.`
+      },
+      {
+        en: `<w>Situated</w> at Bennelong Point on Sydney Harbour, it consists of a series of large <w>precast</w> 'shells' made of <w>concrete</w>, each <w>composed</w> of sections of a <w>sphere</w> of 75.2 metres <w>radius</w>, forming the roofs of the structure, set on a <w>monumental</w> platform.`,
+        uz: `Sidney Harbouridagi Bennelong Pointda joylashgan u, har biri 75,2 metr radiusli sferaning bo'limlaridan tashkil topgan va ulkan platforma ustiga o'rnatilgan inshootning tomlarini hosil qiluvchi bir qator yirik oldindan quyilgan beton "qobiqlar"dan iborat.`
+      },
+      {
+        en: `The building is 183 metres long and 120 metres wide at its widest point.`,
+        uz: `Bino uzunligi 183 metr va eng keng joyida 120 metr kenglikka ega.`
+      },
+      {
+        en: `It is supported on 588 concrete <w>piers</w> which are sunk approximately 25 metres below sea level.`,
+        uz: `U dengiz sathidan taxminan 25 metr chuqurlikka botgan 588 ta beton ustunlar bilan tayanadi.`
+      },
+      {
+        en: `Although the roof structures are commonly referred to as 'shells', they are <w>precast</w> concrete panels supported by concrete <w>ribs</w>.`,
+        uz: `Tom inshootlari odatda "qobiqlar" deb atalsa-da, ular aslida beton qovurg'alar bilan tayangan oldindan quyilgan beton panellardir.`
+      },
+      {
+        en: `The 'shells' are covered with 1,056,006 white and cream-coloured <w>tiles</w> <w>manufactured</w> in a factory in Sweden that generally produced <w>stoneware</w> tiles for the paper-mill industry.`,
+        uz: `"Qobiqlar" odatda qog'oz fabrikasi sanoati uchun sopol plitka ishlab chiqaradigan Shvetsiya fabrikasida tayyorlangan 1 056 006 dona oq va krema rangli plitka bilan qoplangan.`
+      },
+      {
+        en: `The design solution and <w>construction</w> of the shell structure took eight years to complete, and the development of the special <w>ceramic</w> tiles took over three years.`,
+        uz: `Qobiq inshootining loyiha yechimi va qurilishi sakkiz yil davom etdi, maxsus keramik plitka ishlab chiqish esa uch yildan ortiq vaqt oldi.`
+      },
+      {
+        en: `Apart from the tiles covering the 'shells', the building's <w>exterior</w> is mostly <w>clad</w> with <w>granite</w> <w>quarried</w> in Australia.`,
+        uz: `"Qobiqlar"ni qoplaydigan plitalardan tashqari, binoning tashqi qismi asosan Avstraliyada qazib olingan granit bilan qoplangan.`
+      }
+    ]
+  },
+  {
+    letter: 'F',
+    sentences: [
+      {
+        en: `<w>Contrary</w> to its name, Sydney Opera House includes multiple <w>performance</w> <w>venues</w>.`,
+        uz: `Nomiga qaramay, Sidney Opera uyi bir nechta ijro maydonlarini o'z ichiga oladi.`
+      },
+      {
+        en: `It is among the busiest performing arts <w>centres</w> in the world, holding over 1,500 <w>performances</w> each year.`,
+        uz: `U dunyodagi eng band ijro san'ati markazlaridan biri bo'lib, har yili 1 500 dan ortiq tomoshalarni kutib oladi.`
+      },
+      {
+        en: `It hosts a large number of performing arts companies, including the four <w>resident</w> companies: Opera Australia, the Australian Ballet, the Sydney Theatre Company and the Sydney Symphony Orchestra.`,
+        uz: `U ko'plab ijro san'ati kompaniyalarini, jumladan to'rtta doimiy kompaniyani: Opera Avstraliya, Avstraliya Balleti, Sidney Teatr Kompaniyasi va Sidney Simfonik Orkestrini joylashtiradi.`
+      },
+      {
+        en: `With its grand setting and <w>cathedral</w>-like <w>atmosphere</w> the Concert Hall is Sydney Opera House's most <w>prestigious</w> performance space.`,
+        uz: `O'zining ulug'vor muhiti va sobordek atmosferasi bilan Konsert Zali Sidney Opera uyi ning eng nufuzli ijro maydonidir.`
+      },
+      {
+        en: `The largest of all Sydney Opera House interior <w>venues</w>, it delivers <w>outstanding</w> <w>acoustics</w> thanks to its high ceiling and wood <w>paneling</w>.`,
+        uz: `Sidney Opera uyi ichki maydonlarining eng kattasi bo'lgan bu zal baland shifti va yog'och panellari tufayli ajoyib akustikani ta'minlaydi.`
+      },
+      {
+        en: `There is a sizeable outdoor <w>forecourt</w> from which people <w>ascend</w> to the main entrance.`,
+        uz: `Odamlar asosiy kirish joyiga ko'tariladigan katta ochiq oldi hovli mavjud.`
+      },
+      {
+        en: `The steps, which lead up from the <w>forecourt</w> to the main performance <w>venues</w>, are nearly 100 metres wide.`,
+        uz: `Oldi hovlidan asosiy ijro maydonlariga olib boruvchi zinalar deyarli 100 metr kengligiga ega.`
+      },
+      {
+        en: `In 1999, Utzon was re-engaged to develop a set of design <w>principles</w> to act as a guide for future changes to the building.`,
+        uz: `1999-yilda Utzon binoga kelajakdagi o'zgarishlar uchun qo'llanma vazifasini bajaradigan loyiha tamoyillari to'plamini ishlab chiqish uchun qayta jalb qilindi.`
+      },
+      {
+        en: `All of this design work he did from his base in Europe.`,
+        uz: `Bu loyiha ishlarining barchasini u Yevropadagi bazasidan turib amalga oshirdi.`
+      },
+      {
+        en: `These <w>principles</w> help to ensure that the building's <w>architectural</w> <w>integrity</w> is maintained.`,
+        uz: `Bu tamoyillar binoning me'moriy yaxlitligi saqlanishini ta'minlashga yordam beradi.`
+      },
+      {
+        en: `The first <w>alteration</w> to the <w>exterior</w> of the building was the addition of a new <w>colonnade</w>, which shades nine large glass openings into the previously solid exterior wall.`,
+        uz: `Bino tashqi qismiga birinchi o'zgartirishlar oldindan qattiq tashqi devordagi to'qqizta katta shisha teshikni soyalaydigan yangi ustunlar qatorini qo'shish bo'ldi.`
+      },
+      {
+        en: `This Utzon-led project, completed in 2006, enabled theatre <w>patrons</w> to see the harbour for the first time from the theatre <w>foyers</w>.`,
+        uz: `2006-yilda yakunlangan bu Utzon boshchiligidagi loyiha teatr tomoshabinlariga birinchi marta teatr foyelaridan limanini ko'rish imkonini berdi.`
+      },
+      {
+        en: `The design also <w>incorporates</w> the first public lift and interior <w>escalators</w> to assist less mobile <w>patrons</w>.`,
+        uz: `Loyiha shuningdek harakati cheklangan tomoshabinlarga yordam berish uchun birinchi ommaviy lift va ichki eskalatorlarni ham o'z ichiga oladi.`
+      },
+      {
+        en: `Since 2007, the cultural, <w>heritage</w> and <w>architectural</w> importance of Sydney Opera House has been protected by its inclusion on the World Heritage List.`,
+        uz: `2007-yildan beri Sidney Opera uyi ning madaniy, meros va me'moriy ahamiyati Jahon merosi ro'yxatiga kiritilishi bilan himoyalanmoqda.`
+      }
+    ]
+  }
+];
+
+// ======================================================
+// BUILD DOM
+// ======================================================
+var passage = document.getElementById('passage');
+var globalIdx = 0; // global sentence index across all paragraphs
+
+PARAS.forEach(function(para) {
+  // Paragraph letter header row
+  var letterRow = document.createElement('div');
+  letterRow.className = 'para-letter-row';
+
+  var letterCellEn = document.createElement('div');
+  letterCellEn.className = 'para-letter-cell';
+  var letterSpan = document.createElement('span');
+  letterSpan.className = 'para-letter';
+  letterSpan.textContent = para.letter;
+  letterCellEn.appendChild(letterSpan);
+
+  var letterDivider = document.createElement('div');
+  letterDivider.className = 'para-letter-divider';
+
+  var letterCellUz = document.createElement('div');
+  letterCellUz.className = 'para-letter-cell';
+
+  letterRow.appendChild(letterCellEn);
+  letterRow.appendChild(letterDivider);
+  letterRow.appendChild(letterCellUz);
+  passage.appendChild(letterRow);
+
+  // Paragraph text rows — group all sentences in one text row
+  var textRow = document.createElement('div');
+  textRow.className = 'para-text-row';
+
+  var enCell = document.createElement('div');
+  enCell.className = 'cell cell-en';
+
+  var dividerCell = document.createElement('div');
+  dividerCell.className = 'cell-divider';
+
+  var uzCell = document.createElement('div');
+  uzCell.className = 'cell cell-uz';
+
+  para.sentences.forEach(function(s, i) {
+    var idx = globalIdx++;
+
+    // EN sentence span
+    var enSpan = document.createElement('span');
+    enSpan.className = 'sent';
+    enSpan.dataset.idx = idx;
+
+    // sentence number superscript
+    var numSpan = document.createElement('sup');
+    numSpan.className = 'snum';
+    numSpan.textContent = (idx + 1) + '. ';
+    enSpan.appendChild(numSpan);
+
+    // parse <w> tags
+    var enHTML = s.en.replace(/<w>(.*?)<\/w>/g, function(_, word) {
+      return '<span class="w" data-word="' + word.toLowerCase().replace(/[^a-z\-]/g,'') + '">' + word + '</span>';
+    });
+    var tempDiv = document.createElement('div');
+    tempDiv.innerHTML = enHTML;
+    while (tempDiv.firstChild) {
+      enSpan.appendChild(tempDiv.firstChild);
+    }
+    // space after sentence
+    enSpan.appendChild(document.createTextNode(' '));
+    enCell.appendChild(enSpan);
+
+    // UZ sentence span
+    var uzSpan = document.createElement('span');
+    uzSpan.className = 'sent';
+    uzSpan.dataset.idx = idx;
+
+    var uzNum = document.createElement('sup');
+    uzNum.className = 'snum';
+    uzNum.textContent = (idx + 1) + '. ';
+    uzSpan.appendChild(uzNum);
+    uzSpan.appendChild(document.createTextNode(s.uz + ' '));
+    uzCell.appendChild(uzSpan);
+  });
+
+  textRow.appendChild(enCell);
+  textRow.appendChild(dividerCell);
+  textRow.appendChild(uzCell);
+  passage.appendChild(textRow);
+});
+
+// ======================================================
+// HOVER HIGHLIGHT — sync both columns by data-idx
+// ======================================================
+document.addEventListener('mouseover', function(e) {
+  var sent = e.target.closest('.sent');
+  if (!sent) return;
+  var idx = sent.dataset.idx;
+  document.querySelectorAll('.sent[data-idx="' + idx + '"]').forEach(function(el) {
+    el.classList.add('highlight');
+  });
+});
+document.addEventListener('mouseout', function(e) {
+  var sent = e.target.closest('.sent');
+  if (!sent) return;
+  var idx = sent.dataset.idx;
+  document.querySelectorAll('.sent[data-idx="' + idx + '"]').forEach(function(el) {
+    el.classList.remove('highlight');
+  });
+});
+
+// ======================================================
+// POPUP + AI WORD LOOKUP
+// ======================================================
+var popup = document.getElementById('popup');
+var overlay = document.getElementById('overlay');
+var popupWord = document.getElementById('popup-word');
+var popupLoading = document.getElementById('popup-loading');
+var popupContent = document.getElementById('popup-content');
+var popupIpa = document.getElementById('popup-ipa');
+var popupPos = document.getElementById('popup-pos');
+var popupMeaning = document.getElementById('popup-meaning');
+var popupUzbek = document.getElementById('popup-uzbek');
+var popupExample = document.getElementById('popup-example');
+var btnSpeak = document.getElementById('btn-speak');
+var btnCambridge = document.getElementById('btn-cambridge');
+var btnOxford = document.getElementById('btn-oxford');
+
+var DICT = {
+  "absence": {"pos": "noun", "ipa": "/ˈæbsəns/", "meaning": "the state of being away from a place or person", "uzbek": "yo'qlik, bo'lmaslik", "example": "His absence was noticed by everyone."},
+  "acoustics": {"pos": "noun", "ipa": "/əˈkuːstɪks/", "meaning": "the properties of a room that affect how sound is heard in it", "uzbek": "akustika, tovush o'tkazuvchanligi", "example": "The concert hall has excellent acoustics."},
+  "admired": {"pos": "verb", "ipa": "/ədˈmaɪəd/", "meaning": "regarded with respect and warm approval", "uzbek": "hayranlik bilan qaralgan, yuqori baholangan", "example": "She was widely admired for her courage."},
+  "alteration": {"pos": "noun", "ipa": "/ˌɔːltəˈreɪʃn/", "meaning": "a change or modification made to something", "uzbek": "o'zgartirish, o'zgarish", "example": "The alteration to the plan was approved."},
+  "amended": {"pos": "verb", "ipa": "/əˈmendɪd/", "meaning": "made changes or improvements to something", "uzbek": "o'zgartirgan, tuzatgan", "example": "He amended the original design."},
+  "architect": {"pos": "noun", "ipa": "/ˈɑːkɪtekt/", "meaning": "a person who designs buildings professionally", "uzbek": "me'mor, arxitektor", "example": "The architect drew detailed plans."},
+  "architects": {"pos": "noun", "ipa": "/ˈɑːkɪtekts/", "meaning": "plural of architect; people who design buildings", "uzbek": "me'morlar, arxitektorlar", "example": "Several architects competed for the project."},
+  "architectural": {"pos": "adjective", "ipa": "/ˌɑːkɪˈtektʃərəl/", "meaning": "relating to the art and science of designing buildings", "uzbek": "me'moriy, arxitekturaviy", "example": "The architectural style is unique."},
+  "architecture": {"pos": "noun", "ipa": "/ˈɑːkɪtektʃə/", "meaning": "the art and practice of designing and constructing buildings", "uzbek": "me'morchilik, arxitektura", "example": "Gothic architecture features pointed arches."},
+  "ascend": {"pos": "verb", "ipa": "/əˈsend/", "meaning": "to go up or climb to a higher level", "uzbek": "ko'tarilmoq, chiqmoq", "example": "Visitors ascend the steps to the entrance."},
+  "assessing": {"pos": "verb", "ipa": "/əˈsesɪŋ/", "meaning": "evaluating or estimating the quality or value of something", "uzbek": "baholayotgan, tekshirayotgan", "example": "The judges were assessing all entries."},
+  "atmosphere": {"pos": "noun", "ipa": "/ˈætməsfɪə/", "meaning": "the mood or feeling in a place or situation", "uzbek": "atmosfera, muhit, kayfiyat", "example": "The hall had a cathedral-like atmosphere."},
+  "attracted": {"pos": "verb", "ipa": "/əˈtræktɪd/", "meaning": "drew interest or attention from someone", "uzbek": "jalb qildi, qiziqtirdi", "example": "The competition attracted global talent."},
+  "billowing": {"pos": "verb", "ipa": "/ˈbɪləʊɪŋ/", "meaning": "filling with air and swelling outward like a sail", "uzbek": "hilpiramoq, shishib chiqmoq", "example": "The sails were billowing in the wind."},
+  "cathedral": {"pos": "noun", "ipa": "/kəˈθiːdrəl/", "meaning": "a large and important Christian church", "uzbek": "sobor, katedr cherkov", "example": "The cathedral dominated the city skyline."},
+  "centre": {"pos": "noun", "ipa": "/ˈsentə/", "meaning": "a place used for a particular activity or purpose", "uzbek": "markaz", "example": "It became a world-class arts centre."},
+  "centres": {"pos": "noun", "ipa": "/ˈsentəz/", "meaning": "plural of centre; places used for particular activities", "uzbek": "markazlar", "example": "Performing arts centres attract large audiences."},
+  "ceramic": {"pos": "adjective", "ipa": "/səˈræmɪk/", "meaning": "made of hard baked clay or similar material", "uzbek": "keramik, sopol", "example": "The ceramic tiles were specially designed."},
+  "clad": {"pos": "verb", "ipa": "/klæd/", "meaning": "covered or clothed with a material", "uzbek": "qoplangan, yopilgan", "example": "The walls were clad with granite."},
+  "colonnade": {"pos": "noun", "ipa": "/ˌkɒləˈneɪd/", "meaning": "a row of evenly spaced columns supporting a roof", "uzbek": "ustunlar qatori, kolonada", "example": "A colonnade shades the glass openings."},
+  "competition": {"pos": "noun", "ipa": "/ˌkɒmpəˈtɪʃn/", "meaning": "an event where people or groups compete for a prize", "uzbek": "tanlov, musobaqa", "example": "The design competition attracted entries worldwide."},
+  "completion": {"pos": "noun", "ipa": "/kəmˈpliːʃn/", "meaning": "the action of finishing or achieving something", "uzbek": "yakunlash, tugatish", "example": "The completion date was set for 1963."},
+  "complex": {"pos": "adjective", "ipa": "/ˈkɒmpleks/", "meaning": "consisting of many different and connected parts; not simple", "uzbek": "murakkab, qiyin", "example": "The structure had complex curved shapes."},
+  "composed": {"pos": "verb", "ipa": "/kəmˈpəʊzd/", "meaning": "made up of or consisting of particular parts", "uzbek": "tashkil topgan, iborat", "example": "Each shell is composed of sphere sections."},
+  "concrete": {"pos": "noun", "ipa": "/ˈkɒŋkriːt/", "meaning": "a hard building material made from cement, sand, and water", "uzbek": "beton", "example": "The shells are made of precast concrete."},
+  "construction": {"pos": "noun", "ipa": "/kənˈstrʌkʃn/", "meaning": "the process of building something large", "uzbek": "qurilish, barpo etish", "example": "Construction of the platform began in 1959."},
+  "contrary": {"pos": "adjective", "ipa": "/ˈkɒntrəri/", "meaning": "opposite in nature or direction to something", "uzbek": "aksincha, qarama-qarshi", "example": "Contrary to its name, it has many venues."},
+  "criticism": {"pos": "noun", "ipa": "/ˈkrɪtɪsɪzəm/", "meaning": "the expression of disapproval or negative judgment", "uzbek": "tanqid, e'tiroz", "example": "Cost overruns contributed to criticism."},
+  "curved": {"pos": "adjective", "ipa": "/kɜːvd/", "meaning": "having a shape that bends smoothly, not straight", "uzbek": "egri, yumaloq", "example": "The roof has curved shell shapes."},
+  "declaring": {"pos": "verb", "ipa": "/dɪˈkleərɪŋ/", "meaning": "announcing something officially or publicly", "uzbek": "e'lon qilayotgan, aytayotgan", "example": "He stopped, declaring the design outstanding."},
+  "engineers": {"pos": "noun", "ipa": "/ˌendʒɪˈnɪəz/", "meaning": "people who design or build machines, structures, or systems", "uzbek": "muhandislar, injenerlar", "example": "The best engineers worked on the roof."},
+  "entries": {"pos": "noun", "ipa": "/ˈentriːz/", "meaning": "items submitted to a competition or contest", "uzbek": "ishtirokchilar ishlari, topshiriqlar", "example": "Over 200 entries came from around the world."},
+  "escalators": {"pos": "noun", "ipa": "/ˈeskəleɪtəz/", "meaning": "moving staircases that carry people between floors", "uzbek": "eskalatorlar, harakatlanuvchi zinapoyalar", "example": "Interior escalators help less mobile patrons."},
+  "estimate": {"pos": "noun", "ipa": "/ˈestɪmət/", "meaning": "an approximate calculation of cost, size, or value", "uzbek": "hisob-kitob, taxmin", "example": "The original estimate was $7 million."},
+  "estimates": {"pos": "noun", "ipa": "/ˈestɪməts/", "meaning": "plural of estimate; approximate calculations", "uzbek": "hisob-kitoblar, taxminlar", "example": "The minister questioned the cost estimates."},
+  "exposure": {"pos": "noun", "ipa": "/ɪkˈspəʊʒə/", "meaning": "experience of something or contact with it", "uzbek": "tanishish, tajriba, duch kelish", "example": "His early exposure to shipbuilding inspired him."},
+  "exterior": {"pos": "noun", "ipa": "/ɪkˈstɪəriə/", "meaning": "the outer surface or appearance of a building", "uzbek": "tashqi qism, fasad", "example": "The building's exterior is clad with granite."},
+  "forecourt": {"pos": "noun", "ipa": "/ˈfɔːkɔːt/", "meaning": "an open area in front of a large building", "uzbek": "oldi hovli, old maydon", "example": "Visitors cross the forecourt to reach the entrance."},
+  "formally": {"pos": "adverb", "ipa": "/ˈfɔːməli/", "meaning": "in an official or proper manner", "uzbek": "rasman, rasmiy tarzda", "example": "The building was formally completed in 1973."},
+  "foyers": {"pos": "noun", "ipa": "/ˈfɔɪeɪz/", "meaning": "entrance halls or lobbies of a theatre or hotel", "uzbek": "foyelar, kirish hollari", "example": "Patrons could see the harbour from the foyers."},
+  "granite": {"pos": "noun", "ipa": "/ˈɡrænɪt/", "meaning": "a very hard grey or pink rock used in building", "uzbek": "granit, qattiq tosh", "example": "The exterior is clad with Australian granite."},
+  "heritage": {"pos": "noun", "ipa": "/ˈherɪtɪdʒ/", "meaning": "valued traditions and features passed down from history", "uzbek": "meros, madaniy boylik", "example": "Its heritage importance is now protected."},
+  "horizontal": {"pos": "adjective", "ipa": "/ˌhɒrɪˈzɒntl/", "meaning": "parallel to the ground; going across rather than up", "uzbek": "gorizontal, yotiq", "example": "The building sits on a wide horizontal platform."},
+  "incorporates": {"pos": "verb", "ipa": "/ɪnˈkɔːpəreɪts/", "meaning": "includes something as part of a whole", "uzbek": "o'z ichiga oladi, qamrab oladi", "example": "The design incorporates public escalators."},
+  "inspiration": {"pos": "noun", "ipa": "/ˌɪnspəˈreɪʃn/", "meaning": "something that stimulates creativity or a great idea", "uzbek": "ilhom, rag'bat", "example": "Shipbuilding was the inspiration for the roof."},
+  "integrity": {"pos": "noun", "ipa": "/ɪnˈteɡrəti/", "meaning": "the quality of being whole, unified, and consistent", "uzbek": "yaxlitlik, butunlik", "example": "The principles maintain architectural integrity."},
+  "interior": {"pos": "noun", "ipa": "/ɪnˈtɪəriə/", "meaning": "the inside part of a building or other structure", "uzbek": "ichki qism, interer", "example": "Utzon had spectacular plans for the interior."},
+  "judging": {"pos": "verb", "ipa": "/ˈdʒʌdʒɪŋ/", "meaning": "forming an opinion or assessment about something", "uzbek": "hakamlik qilish, baholash", "example": "During the judging, Saarinen arrived late."},
+  "manufactured": {"pos": "verb", "ipa": "/ˌmænjʊˈfæktʃəd/", "meaning": "produced in large quantities using machinery", "uzbek": "ishlab chiqarilgan, tayyorlangan", "example": "The tiles were manufactured in Sweden."},
+  "maritime": {"pos": "adjective", "ipa": "/ˈmærɪtaɪm/", "meaning": "relating to the sea, sailing, or navigation", "uzbek": "dengizchilik, dengiz", "example": "He used his maritime background for research."},
+  "monumental": {"pos": "adjective", "ipa": "/ˌmɒnjʊˈmentl/", "meaning": "great in importance, extent, or size", "uzbek": "ulkan, monumentdek, ulug'vor", "example": "The shells sit on a monumental platform."},
+  "naval": {"pos": "adjective", "ipa": "/ˈneɪvl/", "meaning": "relating to a navy or warships; nautical", "uzbek": "dengiz, harbiy-dengiz", "example": "He studied naval charts of Sydney Harbour."},
+  "outstanding": {"pos": "adjective", "ipa": "/ˌaʊtˈstændɪŋ/", "meaning": "exceptionally good; clearly better than others", "uzbek": "ajoyib, zo'r, alohida", "example": "Saarinen declared the design outstanding."},
+  "overruns": {"pos": "noun", "ipa": "/ˈəʊvərʌnz/", "meaning": "instances when costs or time exceed planned amounts", "uzbek": "oshib ketish, rejadan ortiq xarajat", "example": "Cost overruns caused major criticism."},
+  "paneling": {"pos": "noun", "ipa": "/ˈpænəlɪŋ/", "meaning": "flat sections of wood used to line walls or ceilings", "uzbek": "panel qoplamasi, yog'och panellar", "example": "Wood paneling improves the hall's acoustics."},
+  "patrons": {"pos": "noun", "ipa": "/ˈpeɪtrənz/", "meaning": "regular customers or visitors, especially of a theatre", "uzbek": "tomoshabinlar, mijozlar, homiylar", "example": "Patrons can now see the harbour from foyers."},
+  "performance": {"pos": "noun", "ipa": "/pəˈfɔːməns/", "meaning": "a live show of music, theatre, or dance for an audience", "uzbek": "tomosho, ijro, spektakl", "example": "Each performance attracts a large audience."},
+  "performances": {"pos": "noun", "ipa": "/pəˈfɔːmənsɪz/", "meaning": "plural of performance; multiple live shows or events", "uzbek": "tomoshalar, ijrolar", "example": "Over 1,500 performances are held each year."},
+  "piers": {"pos": "noun", "ipa": "/pɪəz/", "meaning": "upright supports, especially in construction foundations", "uzbek": "ustunlar, tayanch qoziqlari", "example": "It rests on 588 concrete piers."},
+  "platform": {"pos": "noun", "ipa": "/ˈplætfɔːm/", "meaning": "a raised flat surface or base structure", "uzbek": "platforma, asosiy poydevor", "example": "The building sits on a wide raised platform."},
+  "precast": {"pos": "adjective", "ipa": "/ˌpriːˈkɑːst/", "meaning": "made in a mould before being put in position", "uzbek": "oldindan quyilgan, prefabrik", "example": "The shells are precast concrete panels."},
+  "premier": {"pos": "noun", "ipa": "/ˈpremiə/", "meaning": "the head of government of an Australian state", "uzbek": "bosh vazir, premier", "example": "The Premier announced the design competition."},
+  "prestigious": {"pos": "adjective", "ipa": "/preˈstɪdʒəs/", "meaning": "inspiring respect and admiration; having high status", "uzbek": "nufuzli, obro'li, hurmatli", "example": "The Concert Hall is the most prestigious venue."},
+  "principles": {"pos": "noun", "ipa": "/ˈprɪnsɪplz/", "meaning": "fundamental rules or guidelines governing behaviour", "uzbek": "tamoyillar, asosiy qoidalar", "example": "Design principles guide future changes."},
+  "prominent": {"pos": "adjective", "ipa": "/ˈprɒmɪnənt/", "meaning": "important or well-known; standing out noticeably", "uzbek": "taniqli, mashhur, ko'zga tashlanuvchi", "example": "Prominent architect Harry Seidler led protests."},
+  "quarried": {"pos": "verb", "ipa": "/ˈkwɒrɪd/", "meaning": "extracted stone from an open excavation in the ground", "uzbek": "qazib olingan, karyer qilingan", "example": "The granite was quarried in Australia."},
+  "radius": {"pos": "noun", "ipa": "/ˈreɪdiəs/", "meaning": "the distance from the centre to the edge of a circle", "uzbek": "radius, yarim diametr", "example": "Each shell has a radius of 75.2 metres."},
+  "realize": {"pos": "verb", "ipa": "/ˈrɪəlaɪz/", "meaning": "to make something real or to achieve a plan", "uzbek": "amalga oshirmoq, ro'yobga chiqarmoq", "example": "He was unable to realize his interior plans."},
+  "reinstated": {"pos": "verb", "ipa": "/ˌriːɪnˈsteɪtɪd/", "meaning": "restored someone to their former position or role", "uzbek": "qayta tiklangan, vazifasiga qaytarilgan", "example": "Protesters demanded Utzon be reinstated."},
+  "rejected": {"pos": "verb", "ipa": "/rɪˈdʒektɪd/", "meaning": "dismissed or refused to accept something", "uzbek": "rad etilgan, qabul qilinmagan", "example": "Saarinen looked through the rejected entries."},
+  "reputation": {"pos": "noun", "ipa": "/ˌrepjʊˈteɪʃn/", "meaning": "the general opinion people have about someone or something", "uzbek": "obro', shuhrat, nom", "example": "It earned a reputation as a world-class centre."},
+  "resident": {"pos": "adjective", "ipa": "/ˈrezɪdənt/", "meaning": "living or based permanently in a place", "uzbek": "doimiy, rezident", "example": "There are four resident performing companies."},
+  "resignation": {"pos": "noun", "ipa": "/ˌrezɪɡˈneɪʃn/", "meaning": "the act of officially leaving a job or position", "uzbek": "iste'fo, lavozimdan ketish", "example": "Following his resignation, protests erupted."},
+  "ribs": {"pos": "noun", "ipa": "/rɪbz/", "meaning": "curved supporting structures in construction", "uzbek": "qovurg'alar, tayanch yoylar", "example": "Concrete ribs support the precast panels."},
+  "schedules": {"pos": "noun", "ipa": "/ˈʃedjuːlz/", "meaning": "plans showing the times of planned activities", "uzbek": "jadvallar, ish rejalari", "example": "The minister questioned Utzon's schedules."},
+  "shipbuilding": {"pos": "noun", "ipa": "/ˈʃɪpbɪldɪŋ/", "meaning": "the construction and design of ships", "uzbek": "kemasozlik, kema qurilishi", "example": "Exposure to shipbuilding inspired the roof design."},
+  "situated": {"pos": "verb", "ipa": "/ˈsɪtʃueɪtɪd/", "meaning": "located in a particular place", "uzbek": "joylashgan, o'rnatilgan", "example": "It is situated at Bennelong Point."},
+  "spectacular": {"pos": "adjective", "ipa": "/spekˈtækjʊlə/", "meaning": "beautiful in a dramatic and eye-catching way", "uzbek": "ajoyib, ko'rinishli, hashamatli", "example": "Utzon had spectacular plans for the interior."},
+  "sphere": {"pos": "noun", "ipa": "/sfɪə/", "meaning": "a perfectly round three-dimensional geometric shape", "uzbek": "sfera, sharsimon shakllar", "example": "Each shell is a section of a sphere."},
+  "stoneware": {"pos": "noun", "ipa": "/ˈstəʊnweə/", "meaning": "a type of hard, dense ceramic material", "uzbek": "sopol buyumlar, keramika", "example": "The factory produced stoneware tiles."},
+  "symbol": {"pos": "noun", "ipa": "/ˈsɪmbəl/", "meaning": "a thing that represents or stands for something else", "uzbek": "ramz, belgi, timbol", "example": "It became a symbol of Sydney and Australia."},
+  "tiles": {"pos": "noun", "ipa": "/taɪlz/", "meaning": "flat pieces of hard material used to cover surfaces", "uzbek": "plitalar, kafel", "example": "The shells are covered with 1 million tiles."},
+  "travels": {"pos": "noun", "ipa": "/ˈtrævlz/", "meaning": "journeys made to different places", "uzbek": "sayohatlar, safar", "example": "His travels shaped the Opera House design."},
+  "treasured": {"pos": "verb", "ipa": "/ˈtreʒəd/", "meaning": "kept or valued something as precious", "uzbek": "qadrlamoq, aziz tutmoq", "example": "It is treasured by the people of Australia."},
+  "venues": {"pos": "noun", "ipa": "/ˈvenjuːz/", "meaning": "places where events are held", "uzbek": "maydonlar, zallar, joylar", "example": "The building includes multiple performance venues."},
+  "vision": {"pos": "noun", "ipa": "/ˈvɪʒn/", "meaning": "the ability to think about the future with imagination", "uzbek": "tasavvur, ko'rish, g'oya", "example": "Engineers worked together with Utzon's vision."},
+  "withdraw": {"pos": "verb", "ipa": "/wɪðˈdrɔː/", "meaning": "to remove oneself or leave a position", "uzbek": "chiqib ketmoq, kechirmoq, chetlanmoq", "example": "He was forced to withdraw as chief architect."},
+};
+
+var cache = {};
+var currentWord = '';
+
+// Speech synthesis — preload voices
+var voices = [];
+function loadVoices() {
+  voices = speechSynthesis.getVoices();
+}
+loadVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+btnSpeak.addEventListener('click', function() {
+  if (!currentWord) return;
+  var u = new SpeechSynthesisUtterance(currentWord);
+  var en = voices.find(function(v) { return v.lang.startsWith('en'); });
+  if (en) u.voice = en;
+  u.lang = 'en-GB';
+  speechSynthesis.speak(u);
+});
+
+function showPopup(word, x, y) {
+  currentWord = word;
+  popupWord.textContent = word;
+  btnCambridge.href = 'https://dictionary.cambridge.org/dictionary/english/' + encodeURIComponent(word);
+  btnOxford.href = 'https://www.oxfordlearnersdictionaries.com/definition/english/' + encodeURIComponent(word);
+
+  popup.style.display = 'block';
+  overlay.style.display = 'block';
+
+  // position
+  var pw = 290, ph = 260;
+  var left = x + 14, top = y + 14;
+  if (left + pw > window.innerWidth - 10) left = x - pw - 10;
+  if (top + ph > window.innerHeight - 10) top = y - ph - 10;
+  popup.style.left = Math.max(8, left) + 'px';
+  popup.style.top = Math.max(8, top) + 'px';
+
+  // cached?
+  if (cache[word]) {
+    showData(cache[word]);
+    return;
+  }
+
+  popupLoading.style.display = 'block';
+  popupContent.style.display = 'none';
+
+  fetchWordData(word);
+}
+
+function showData(data) {
+  popupLoading.style.display = 'none';
+  popupContent.style.display = 'block';
+  popupIpa.textContent = data.ipa || '';
+  popupPos.textContent = data.pos || '';
+  popupMeaning.textContent = data.meaning || '';
+  popupUzbek.innerHTML = '🇺🇿 ' + (data.uzbek || '');
+  popupExample.textContent = data.example || '';
+}
+
+function fetchWordData(word) {
+  var data = DICT[word] || DICT[word.replace(/s$/, '')] || DICT[word.replace(/ed$/, '')] || DICT[word.replace(/ing$/, '')] || null;
+  if (data) {
+    cache[word] = data;
+    if (currentWord === word) {
+      showData(data);
+    }
+  } else {
+    if (currentWord === word) {
+      popupLoading.style.display = 'none';
+      popupContent.style.display = 'block';
+      popupIpa.textContent = '';
+      popupPos.textContent = '';
+      popupMeaning.textContent = 'Definition not available offline.';
+      popupUzbek.textContent = '';
+      popupExample.textContent = '';
+    }
+  }
+}
+
+function hidePopup() {
+  popup.style.display = 'none';
+  overlay.style.display = 'none';
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('w')) {
+    e.stopPropagation();
+    var word = e.target.dataset.word;
+    showPopup(word, e.clientX, e.clientY);
+  }
+});
+
+document.getElementById('popup-close').addEventListener('click', hidePopup);
+overlay.addEventListener('click', hidePopup);
+</script>
+</body>
+</html>
